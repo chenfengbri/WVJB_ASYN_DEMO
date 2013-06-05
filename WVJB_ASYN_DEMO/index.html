@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    </head>
+    <body>
+        <h1>hello world</h1>
+        <script>
+            document.addEventListener('WebViewJavascriptBridgeReady', function(e){
+                                      // alert(window.WebViewJavascriptBridge);
+                                      var bridge = e.bridge;
+                                      bridge.init(function(message, responseCallback) {
+                                                  alert('Received message: ' + message)
+                                                  if (responseCallback) {
+                                                  responseCallback('data');
+                                                  }
+                                                  });
+                                      bridge.callHandler('fetchRemoteData', {}, function(response) {
+                                                         alert(JSON.stringify(response));
+                                                         });
+                                      });
+        </script>
+    </body>
+</html>
